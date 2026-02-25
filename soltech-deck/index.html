@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Soltech Energy – 90-Day Digital Growth Pilot (Proposal Deck)</title>
+
+  <!-- Professional font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* :root{
+      --bg:#0b1220;
+      --slide:#0f172a;          
+      --card:#111c35;           
+      --ink:#e5e7eb;            
+      --muted:#94a3b8;          
+      --line:rgba(148,163,184,.18);
+      --accent:#22c55e;         
+      --accent2:#38bdf8;        
+      --warn:#f59e0b;           
+      --shadow: 0 24px 60px rgba(0,0,0,.45);
+
+      --radius: 18px;
+      --pad: 34px;
+
+      --h1: 46px;
+      --h2: 24px;
+      --h3: 18px;
+      --p:  16px;
+      --small: 13px;
+    }  */
+
+    :root{
+    --bg:#f4f6f9;
+    --slide:#ffffff;
+    --card:#f9fafb;
+    --ink:#111827;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+
+    --accent:#16a34a;      /* solar green */
+    --accent2:#0284c7;     /* subtle blue */
+    --warn:#d97706;
+
+    --shadow: 0 20px 50px rgba(0,0,0,.08);
+
+    --radius: 18px;
+    --pad: 34px;
+
+    --h1: 44px;
+    --h2: 22px;
+    --h3: 18px;
+    --p:  16px;
+    --small: 13px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    /* body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 800px at 12% 10%, rgba(34,197,94,.12), transparent 55%),
+                  radial-gradient(1000px 700px at 90% 20%, rgba(56,189,248,.10), transparent 60%),
+                  var(--bg);
+      color: var(--ink);
+      overflow:hidden;
+    } */
+
+    body{
+    margin:0;
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    background: var(--bg);
+    color: var(--ink);
+    overflow:hidden;
+    }
+
+    /* Stage */
+    .stage{
+      height:100vh;
+      width:100vw;
+      display:grid;
+      place-items:center;
+      padding: 18px;
+    }
+    .deck{
+      width: min(1320px, 98vw);
+      height: min(760px, 94vh);   /* ~16:9 feel */
+      position: relative;
+    }
+
+    /* Slide */
+    /* .slide{
+      position:absolute;
+      inset:0;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 30%),
+                  var(--slide);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: var(--pad);
+      opacity:0;
+      transform: translateY(8px) scale(.992);
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events:none;
+    } */
+
+    .slide{
+    position:absolute;
+    inset:0;
+    border-radius: var(--radius);
+    background: var(--slide);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    padding: var(--pad);
+    opacity:0;
+    transform: translateY(8px) scale(.992);
+    transition: opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+    }
+    .slide::before{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        height:6px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-top-left-radius: var(--radius);
+        border-top-right-radius: var(--radius);
+    }
+
+    .slide.active{
+      opacity:1;
+      transform: translateY(0) scale(1);
+      pointer-events:auto;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 18px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      font-size: var(--small);
+      color: var(--muted);
+    }
+    .brand strong{ color: var(--ink); font-weight: 700; }
+    .meta{
+      text-align:right;
+      font-size: var(--small);
+      color: var(--muted);
+    }
+    .meta strong{ color: var(--ink); font-weight: 700; }
+
+    /* Type */
+    h1{ margin:0; font-size: var(--h1); letter-spacing:-.02em; line-height:1.05; }
+    h2{ margin:0; font-size: var(--h2); letter-spacing:-.01em; color: var(--ink); }
+    h3{ margin:0 0 10px 0; font-size: var(--h3); color: var(--ink); }
+    p{ margin: 8px 0; font-size: var(--p); color: var(--muted); line-height:1.45; }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size: var(--small);
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    /* Layout */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    /* Cards */
+    /* .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .card.soft{
+      background: rgba(255,255,255,.03);
+    } */
+
+    .card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    }
+    .card.soft{
+    background: #ffffff;
+    }
+
+    /* Pills */
+    .pillrow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    /* .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+    } */
+
+    .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    }
+
+    .pill .miniDot{ width:7px;height:7px;border-radius:999px;background: var(--accent2); }
+
+    /* Lists */
+    ul{ margin: 10px 0 0 18px; padding:0; }
+    li{ margin: 8px 0; color: var(--ink); font-size: 16px; line-height:1.35; }
+    li span{ color: var(--muted); font-weight: 500; }
+
+    /* Divider */
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+
+    /* Pipeline diagram */
+    .pipeline{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+      align-items:stretch;
+    }
+    .step{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 12px;
+      background: rgba(255,255,255,.03);
+      position:relative;
+      min-height: 92px;
+    }
+    .stepTitle{
+      font-weight: 800;
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
+    }
+    .stepSub{
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.35;
+    }
+    .arrow{
+      position:absolute;
+      right:-10px;
+      top:50%;
+      transform: translateY(-50%);
+      width:18px;height:18px;
+      border-right: 2px solid rgba(229,231,235,.75);
+      border-top: 2px solid rgba(229,231,235,.75);
+      transform: translateY(-50%) rotate(45deg);
+      opacity:.55;
+    }
+    .step:last-child .arrow{ display:none; }
+
+    /* KPI table */
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      margin-top: 10px;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align:top;
+      font-size: 14px;
+    }
+    th{
+      text-align:left;
+      color: var(--muted);
+      font-weight: 700;
+      background: rgba(255,255,255,.03);
+    }
+    tr:last-child td{ border-bottom:none; }
+    .muted{ color: var(--muted); }
+
+    /* Footer */
+    .footer{
+      position:absolute;
+      left: var(--pad);
+      right: var(--pad);
+      bottom: 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .progress{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+    }
+    /* .bar{
+      width:180px;height:8px;border-radius:999px;background: rgba(148,163,184,.18);
+      overflow:hidden;
+    } */
+
+    .bar{
+    width:180px;
+    height:8px;
+    border-radius:999px;
+    background: #e5e7eb;
+    overflow:hidden;
+    }
+
+    .bar>span{
+      height:100%;
+      display:block;
+      width:0%;
+      background: linear-gradient(90deg, rgba(34,197,94,.9), rgba(56,189,248,.85));
+      transition: width .2s ease;
+    }
+
+    /* Controls */
+    .controls{
+      position:fixed;
+      left: 18px;
+      bottom: 18px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      z-index:50;
+    }
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--ink);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .hint{ color: var(--muted); font-size: 12.5px; }
+
+    /* Print */
+    /* @media print{
+      body{ overflow:visible; background:#fff; }
+      .stage{ padding:0; height:auto; display:block; }
+      .deck{ width:auto; height:auto; }
+      .slide{
+        position:relative;
+        opacity:1 !important;
+        transform:none !important;
+        pointer-events:auto !important;
+        margin:0;
+        page-break-after:always;
+        break-after:page;
+        box-shadow:none;
+        border-radius:0;
+        border:none;
+        height: 100vh;
+        background: #0f172a;
+      }
+      .slide::before{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        height:6px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-top-left-radius: var(--radius);
+        border-top-right-radius: var(--radius);
+        }
+      .controls{ display:none !important; }
+      @page{ size: A4 landscape; margin: 10mm; }
+    } */
+
+    /* Print */
+    @media print{
+        body{
+            overflow:visible;
+            background:#ffffff;
+        }
+
+        .stage{
+            padding:0;
+            height:auto;
+            display:block;
+        }
+
+        .deck{
+            width:auto;
+            height:auto;
+        }
+
+        .slide{
+            position:relative;
+            opacity:1 !important;
+            transform:none !important;
+            pointer-events:auto !important;
+            margin:0;
+            page-break-after:always;
+            break-after:page;
+            box-shadow:none;
+            border-radius:0;
+            border:1px solid #e5e7eb;
+            height: 100vh;
+            background:#ffffff;   /* LIGHT background */
+        }
+
+        .slide::before{
+            content:"";
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            height:6px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+        }
+
+        .controls{
+            display:none !important;
+        }
+
+        @page{
+            size: A4 landscape;
+            margin: 12mm;
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <div class="deck" id="deck">
+
+      <!-- Slide 1: Title -->
+      <section class="slide active" data-title="Title">
+        <div class="topbar">
+          <div class="brand">
+            <div><strong>Dhanishta Technologies</strong></div>
+            <div>Presenter: <strong>Aditya Jaiman</strong></div>
+          </div>
+          <div class="meta">
+            <div>Client: <strong>Soltech Energy</strong></div>
+            <div>Contact: <strong>Pradhuman Kasat</strong></div>
+            <div>Date: <strong>25 Feb 2026</strong></div>
+          </div>
+        </div>
+
+        <div class="kicker"><span class="dot"></span> 90-Day Pilot Proposal</div>
+        <h1>Build Soltech’s online presence and a measurable inbound engine.</h1>
+        <p>Branding + conversion website + local SEO foundation + KPI tracking (leads → installs).</p>
+
+        <div class="pillrow">
+          <span class="pill"><span class="miniDot"></span>Branding</span>
+          <span class="pill"><span class="miniDot"></span>Website</span>
+          <span class="pill"><span class="miniDot"></span>SEO & Local</span>
+          <span class="pill"><span class="miniDot"></span>Tracking & ROI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="card soft">
+          <h2>Meeting outcome</h2>
+          <ul>
+            <li>Confirm operational capacity + baseline numbers <span>(so scaling is safe)</span></li>
+            <li>Agree pilot scope + timeline <span>(90 days)</span></li>
+            <li>Define success metrics <span>(KPI dashboard)</span></li>
+          </ul>
+        </div>
+
+        <div class="footer">
+          <div>Use ← → keys · P to print</div>
+          <div class="progress"><span id="count1">1</span>/<span id="total1">9</span><div class="bar"><span id="bar1"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Current reality -->
+      <section class="slide" data-title="Current Baseline">
+        <div class="topbar">
+          <div class="brand"><div><strong>Soltech Energy</strong></div><div>Jaipur · Residential + Commercial</div></div>
+          <div class="meta"><div>Baseline</div><div><strong>Digital Readiness: Early-stage</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">Current reality: online presence exists, but there is no visibility.</h1>
+        <div class="grid2">
+          <div class="card">
+            <h3>What’s working today</h3>
+            <ul>
+              <li>Network-based leads <span>(family / friends)</span></li>
+              <li>Previous clients & referrals <span>(trust channel)</span></li>
+              <li>In-person conversion <span>(meetings drive decisions)</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What’s missing digitally</h3>
+            <ul>
+              <li>Conversion-ready website <span>(mobile + lead capture)</span></li>
+              <li>Google Business Profile <span>(local trust + discovery)</span></li>
+              <li>SEO visibility <span>(Jaipur intent keywords)</span></li>
+              <li>Tracking system <span>(no CPL / ROI clarity)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>We fix missing foundations first.</div>
+          <div class="progress"><span id="count2">2</span>/<span id="total2">9</span><div class="bar"><span id="bar2"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Pipeline -->
+      <section class="slide" data-title="Pipeline">
+        <div class="topbar">
+          <div class="brand"><div><strong>Execution model</strong></div><div>We track end-to-end outcomes</div></div>
+          <div class="meta"><div>Primary KPI</div><div><strong>Installs</strong> (not vanity metrics)</div></div>
+        </div>
+
+        <h1 style="font-size:40px;">Pipeline we build + measure</h1>
+        <p>Every improvement ties back to installs: response speed, conversion rate, cost per lead, source quality.</p>
+
+        <div class="pipeline">
+          <div class="step">
+            <div class="stepTitle">Leads</div>
+            <div class="stepSub">Source tagged + qualified</div>
+            <div class="arrow"></div>
+          </div>
+          <div class="step">
+            <div class="stepTitle">Response</div>
+            <div class="stepSub">First-response time tracked</div>
+            <div class="arrow"></div>
+          </div>
+          <div class="step">
+            <div class="stepTitle">Site Visit</div>
+            <div class="stepSub">Visits/week = pipeline health</div>
+            <div class="arrow"></div>
+          </div>
+          <div class="step">
+            <div class="stepTitle">Quote</div>
+            <div class="stepSub">Quote turnaround (days)</div>
+            <div class="arrow"></div>
+          </div>
+          <div class="step">
+            <div class="stepTitle">Install</div>
+            <div class="stepSub">Revenue + gross profit impact</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card soft">
+            <h3>What we ask today (numbers)</h3>
+            <ul>
+              <li>Installs/month + max capacity/month</li>
+              <li>Avg install value (₹) + gross margin (%)</li>
+              <li>Quote turnaround time (days)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Why it matters</h3>
+            <p>We do not scale lead volume if delivery bandwidth can’t handle it. This protects quality and brand.</p>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Next: pilot scope (what we deliver)</div>
+          <div class="progress"><span id="count3">3</span>/<span id="total3">9</span><div class="bar"><span id="bar3"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Scope -->
+      <section class="slide" data-title="Pilot Scope">
+        <div class="topbar">
+          <div class="brand"><div><strong>Pilot scope</strong></div><div>Foundation → visibility → optimization</div></div>
+          <div class="meta"><div>Duration</div><div><strong>90 days</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">What we will build in the pilot</h1>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Branding</h3>
+            <ul>
+              <li>Positioning + messaging</li>
+              <li>Trust assets <span>(proof, photos, case snippets)</span></li>
+              <li>Brand consistency kit <span>(basic)</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Website</h3>
+            <ul>
+              <li>Conversion structure <span>(forms + WhatsApp CTA)</span></li>
+              <li>Mobile-first performance</li>
+              <li>Tracking setup <span>(events + lead sources)</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>SEO & Local</h3>
+            <ul>
+              <li>Google Business Profile setup</li>
+              <li>Reviews system <span>(repeatable)</span></li>
+              <li>Local SEO foundation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Next: 90-day roadmap</div>
+          <div class="progress"><span id="count4">4</span>/<span id="total4">9</span><div class="bar"><span id="bar4"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Roadmap -->
+      <section class="slide" data-title="90-Day Roadmap">
+        <div class="topbar">
+          <div class="brand"><div><strong>Roadmap</strong></div><div>Three phases</div></div>
+          <div class="meta"><div>Delivery style</div><div><strong>Weekly checkpoints</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">90-Day roadmap</h1>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Weeks 1–3 · Foundation</h3>
+            <ul>
+              <li>Baseline metrics + tracking sheet</li>
+              <li>Brand messaging direction</li>
+              <li>Website structure + wireframe</li>
+              <li>GBP setup plan</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Weeks 4–8 · Build & Launch</h3>
+            <ul>
+              <li>Website build + launch</li>
+              <li>GBP live + review activation</li>
+              <li>SEO base pages + Jaipur intent targets</li>
+              <li>Lead capture + attribution</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Weeks 9–12 · Optimize</h3>
+            <ul>
+              <li>Improve response + conversion steps</li>
+              <li>Quality scoring by source</li>
+              <li>KPI reporting cadence</li>
+              <li>ROI view <span>(profit impact)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Next: KPI dashboard</div>
+          <div class="progress"><span id="count5">5</span>/<span id="total5">9</span><div class="bar"><span id="bar5"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 6: KPIs -->
+      <section class="slide" data-title="KPI Tracking">
+        <div class="topbar">
+          <div class="brand"><div><strong>KPI tracking</strong></div><div>Weekly + monthly reporting</div></div>
+          <div class="meta"><div>Focus</div><div><strong>Leads → Installs</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">KPIs we track (no vanity)</h1>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Dashboard (core)</h3>
+            <table>
+              <thead>
+                <tr><th>Stage</th><th>KPI</th><th>Target/Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Lead</td><td>Qualified leads/month</td><td class="muted">To define with you</td></tr>
+                <tr><td>Speed</td><td>First response time</td><td class="muted">Faster = higher conversion</td></tr>
+                <tr><td>Visit</td><td>Site visits/week</td><td class="muted">Pipeline health</td></tr>
+                <tr><td>Quote</td><td>Quote turnaround (days)</td><td class="muted">Critical bottleneck</td></tr>
+                <tr><td>Install</td><td>Installs/month</td><td class="muted">Business outcome</td></tr>
+                <tr><td>ROI</td><td>CPL + profit impact</td><td class="muted">Decision clarity</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card soft">
+            <h3>Mechanics (simple)</h3>
+            <ul>
+              <li>Every lead gets a source tag + status</li>
+              <li>Status flow: new → contacted → visit → quote → won/lost</li>
+              <li>Weekly review: bottleneck + next action</li>
+              <li>Monthly: ROI snapshot (profit impact vs cost)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Next: operational alignment</div>
+          <div class="progress"><span id="count6">6</span>/<span id="total6">9</span><div class="bar"><span id="bar6"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Operations alignment -->
+      <section class="slide" data-title="Operations Alignment">
+        <div class="topbar">
+          <div class="brand"><div><strong>Operations alignment</strong></div><div>Protect quality while growing</div></div>
+          <div class="meta"><div>Key risk</div><div><strong>Overloading ops</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">Scaling rule: capacity first.</h1>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Capacity data we confirm</h3>
+            <ul>
+              <li>Max install capacity/month</li>
+              <li>Materials + labor constraints</li>
+              <li>Peak season planning</li>
+              <li>Quote turnaround + follow-up ownership</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <h3>What this changes</h3>
+            <p>If capacity is limited, we prioritize conversion improvements and local trust assets first, then scale inbound.</p>
+            <div class="divider"></div>
+            <p><strong style="color:var(--ink);">Result:</strong> more installs with controlled growth, not chaos.</p>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Next: what we need from you</div>
+          <div class="progress"><span id="count7">7</span>/<span id="total7">9</span><div class="bar"><span id="bar7"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 8: Inputs needed -->
+      <section class="slide" data-title="Inputs Needed">
+        <div class="topbar">
+          <div class="brand"><div><strong>Kickoff inputs</strong></div><div>So we move fast</div></div>
+          <div class="meta"><div>Time required</div><div><strong>~60 minutes</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">We need these inputs to start.</h1>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Numbers</h3>
+            <ul>
+              <li>Avg install value (₹) <span>(residential + commercial split if possible)</span></li>
+              <li>Gross margin (%)</li>
+              <li>Current installs/month + max capacity/month</li>
+              <li>Quote turnaround time (days)</li>
+              <li>Lead tracking method <span>(WhatsApp / Excel / none)</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Assets</h3>
+            <ul>
+              <li>Past project photos + before/after</li>
+              <li>Logo (if any) + preferred style</li>
+              <li>Current website/social links (if any)</li>
+              <li>Service list + key differentiators</li>
+              <li>Top 10 FAQs customers ask</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Next: close + next steps</div>
+          <div class="progress"><span id="count8">8</span>/<span id="total8">9</span><div class="bar"><span id="bar8"></span></div></div>
+        </div>
+      </section>
+
+      <!-- Slide 9: Close -->
+      <section class="slide" data-title="Close">
+        <div class="topbar">
+          <div class="brand"><div><strong>Decision</strong></div><div>Start pilot → measure → improve</div></div>
+          <div class="meta"><div>Outcome</div><div><strong>Online presence + tracked inbound</strong></div></div>
+        </div>
+
+        <h1 style="font-size:40px;">If we agree today, we start with baseline + tracking.</h1>
+        <p>Within the first 14 days you’ll see: finalized baseline sheet, brand messaging direction, website structure, GBP plan, and tracking system live.</p>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>90-Day pilot success looks like</h3>
+            <ul>
+              <li>Online presence that builds trust</li>
+              <li>Local discovery via Google + SEO base</li>
+              <li>Clear KPI dashboard (leads → installs)</li>
+              <li>ROI visibility for decision-making</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <h3>Next step (today)</h3>
+            <ul>
+              <li>Confirm numbers + capacity</li>
+              <li>Agree scope & kickoff date</li>
+              <li>Define target KPIs for 90 days</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>Thank you · Dhanishta Technologies</div>
+          <div class="progress"><span id="count9">9</span>/<span id="total9">9</span><div class="bar"><span id="bar9"></span></div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="prevBtn">← Prev</button>
+    <button class="btn" id="nextBtn">Next →</button>
+    <button class="btn" id="printBtn">Print / Save PDF</button>
+    <div class="hint">Keys: ← → · P to print · Home/End</div>
+  </div>
+
+  <script>
+    (function(){
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const total = slides.length;
+      let idx = 0;
+
+      // set totals
+      for (let i=1;i<=total;i++){
+        const t = document.getElementById("total"+i);
+        if (t) t.textContent = String(total);
+      }
+
+      function show(i){
+        idx = Math.max(0, Math.min(total-1, i));
+        slides.forEach((s,k)=> s.classList.toggle("active", k===idx));
+
+        // progress bars
+        slides.forEach((s,k)=>{
+          const bar = document.getElementById("bar"+(k+1));
+          if (!bar) return;
+          const pct = ((k+1)/total)*100;
+          bar.style.width = (k+1 <= idx+1) ? pct+"%" : "0%";
+        });
+      }
+
+      function next(){ show(idx+1); }
+      function prev(){ show(idx-1); }
+
+      document.getElementById("nextBtn").addEventListener("click", next);
+      document.getElementById("prevBtn").addEventListener("click", prev);
+      document.getElementById("printBtn").addEventListener("click", ()=> window.print());
+
+      window.addEventListener("keydown", (e)=>{
+        const k = e.key;
+        if (k === "ArrowRight" || k === " "){ e.preventDefault(); next(); }
+        if (k === "ArrowLeft"){ e.preventDefault(); prev(); }
+        if (k.toLowerCase() === "p"){ e.preventDefault(); window.print(); }
+        if (k === "Home"){ e.preventDefault(); show(0); }
+        if (k === "End"){ e.preventDefault(); show(total-1); }
+      });
+
+      show(0);
+    })();
+  </script>
+</body>
+</html>
