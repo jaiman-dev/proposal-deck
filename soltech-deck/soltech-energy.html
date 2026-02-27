@@ -78,7 +78,7 @@
     }
 
     /* Stage */
-    .stage{
+    /* .stage{
       height:100vh;
       width:100vw;
       display:grid;
@@ -87,10 +87,26 @@
     }
     .deck{
       width: min(1320px, 98vw);
-      height: min(760px, 94vh);   /* ~16:9 feel */
+      height: min(760px, 94vh);
       position: relative;
+    } */
+
+    .stage{
+    height:100vh;
+    width:100vw;
+    display:grid;
+    place-items:center;
+    padding: clamp(14px, 3vw, 28px); /* responsive padding */
     }
 
+    .deck{
+    width: min(1200px, 92vw);       /* don’t go to 98vw */
+    aspect-ratio: 16 / 9;           /* keep slide shape */
+    height: auto;                   /* let aspect ratio control height */
+    max-height: calc(100vh - 120px);/* leave room for controls */
+    position: relative;
+    }
+    
     /* Slide */
     /* .slide{
       position:absolute;
@@ -372,6 +388,10 @@
       gap:10px;
       align-items:center;
       z-index:50;
+
+      background: transparent;   /* no box */
+      border: none;
+      padding: 0;
     }
     .btn{
       border:1px solid var(--line);
